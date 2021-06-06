@@ -14,9 +14,6 @@ min_coverage: 85
 use_whey: true
 enable_conda: False
 enable_docs: False
-sphinx_html_theme: furo
-standalone_contrib_guide: true
-#docs_fail_on_warning: true
 
 platforms:
  - Linux

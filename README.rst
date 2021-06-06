@@ -104,3 +104,20 @@ To install with ``pip``:
 	$ python -m pip install tox-minversions
 
 .. end installation
+
+Usage
+-------
+
+Individual ``testenv``\s can be configured to use the minimum versions of dependencies by setting ``minversions = True`` like so:
+
+.. code-block:: ini
+
+	[testenv]
+	minversions = True
+
+Alternatively, the ``--minversions`` option can be given on the command line to use the minimum versions for *all* testenvs:
+
+.. code-block:: bash
+
+	$ tox --minversions
+	$ tox -e py36,py37,mypy --minversions
