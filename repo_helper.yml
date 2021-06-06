@@ -1,0 +1,49 @@
+# Configuration for 'repo_helper' (https://github.com/domdfcoding/repo_helper)
+---
+modname: 'tox-minversions'
+copyright_years: 2021
+author: 'Dominic Davis-Foster'
+email: 'dominic@davis-foster.co.uk'
+username: 'python-coincidence'
+assignee: 'domdfcoding'
+version: '0.0.0'
+license: 'MIT'
+short_desc: "tox plugin which installs the *minimum* versions of a project's dependencies"
+
+min_coverage: 85
+use_whey: true
+enable_conda: False
+enable_docs: False
+sphinx_html_theme: furo
+standalone_contrib_guide: true
+#docs_fail_on_warning: true
+
+platforms:
+ - Linux
+
+python_versions:
+ - 3.7
+ - 3.8
+ - 3.9
+ - 3.10-dev
+
+entry_points:
+ tox:
+  - minversions = tox_minversions
+
+#sphinx_conf_epilogue:
+# - nitpicky = True
+
+intersphinx_mapping:
+ - '"tox": ("https://tox.readthedocs.io/en/latest/", None)'
+
+classifiers:
+ - 'Development Status :: 3 - Alpha'
+ - 'Framework :: tox'
+ - 'Intended Audience :: Developers'
+ - 'Topic :: Software Development :: Quality Assurance'
+ - 'Topic :: Software Development :: Testing'
+ - 'Topic :: Software Development :: Testing :: Unit'
+
+keywords:
+ - tox

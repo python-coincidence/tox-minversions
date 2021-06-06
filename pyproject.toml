@@ -1,0 +1,47 @@
+[build-system]
+requires = [ "whey",]
+build-backend = "whey"
+
+[project]
+name = "tox-minversions"
+version = "0.0.0"
+description = "tox plugin which installs the *minimum* versions of a project's dependencies"
+readme = "README.rst"
+keywords = [ "tox",]
+dynamic = [ "requires-python", "classifiers", "dependencies",]
+
+[[project.authors]]
+name = "Dominic Davis-Foster"
+email = "dominic@davis-foster.co.uk"
+
+
+[project.license]
+file = "LICENSE"
+
+[project.urls]
+Homepage = "https://github.com/python-coincidence/tox-minversions"
+"Issue Tracker" = "https://github.com/python-coincidence/tox-minversions/issues"
+"Source Code" = "https://github.com/python-coincidence/tox-minversions"
+
+[tool.whey]
+base-classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: tox",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Quality Assurance",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Software Development :: Testing :: Unit",
+    "Typing :: Typed",
+]
+python-versions = [ "3.7", "3.8", "3.9",]
+python-implementations = [ "CPython",]
+platforms = [ "Linux",]
+license-key = "MIT"
+package = "tox_minversions"
+
+[tool.mkrecipe]
+extras = "all"
+conda-channels = [ "python-coincidence",]
+
+[project.entry-points.tox]
+minversions = "tox_minversions"

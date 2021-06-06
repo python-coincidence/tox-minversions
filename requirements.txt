@@ -1,0 +1,6 @@
+cawdrey>=0.4.2
+domdf-python-tools>=2.5.2
+first>=2.0.2
+packaging>=20.9
+shippinglabel>=0.14.1
+tox>=3.18.0
