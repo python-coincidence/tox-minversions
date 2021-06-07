@@ -17,10 +17,8 @@ tox-minversions
 
 	* - Tests
 	  - |actions_linux| |coveralls|
-	* - PyPI
-	  - |pypi-version| |supported-versions| |supported-implementations| |wheel|
 	* - Activity
-	  - |commits-latest| |commits-since| |maintained| |pypi-downloads|
+	  - |commits-latest| |commits-since| |maintained|
 	* - QA
 	  - |codefactor| |actions_flake8| |actions_mypy|
 	* - Other
@@ -50,22 +48,6 @@ tox-minversions
 	:target: https://www.codefactor.io/repository/github/python-coincidence/tox-minversions
 	:alt: CodeFactor Grade
 
-.. |pypi-version| image:: https://img.shields.io/pypi/v/tox-minversions
-	:target: https://pypi.org/project/tox-minversions/
-	:alt: PyPI - Package Version
-
-.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/tox-minversions?logo=python&logoColor=white
-	:target: https://pypi.org/project/tox-minversions/
-	:alt: PyPI - Supported Python Versions
-
-.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/tox-minversions
-	:target: https://pypi.org/project/tox-minversions/
-	:alt: PyPI - Supported Implementations
-
-.. |wheel| image:: https://img.shields.io/pypi/wheel/tox-minversions
-	:target: https://pypi.org/project/tox-minversions/
-	:alt: PyPI - Wheel
-
 .. |license| image:: https://img.shields.io/github/license/python-coincidence/tox-minversions
 	:target: https://github.com/python-coincidence/tox-minversions/blob/master/LICENSE
 	:alt: License
@@ -84,10 +66,6 @@ tox-minversions
 .. |maintained| image:: https://img.shields.io/maintenance/yes/2021
 	:alt: Maintenance
 
-.. |pypi-downloads| image:: https://img.shields.io/pypi/dm/tox-minversions
-	:target: https://pypi.org/project/tox-minversions/
-	:alt: PyPI - Downloads
-
 .. end shields
 
 Installation
@@ -95,13 +73,13 @@ Installation
 
 .. start installation
 
-``tox-minversions`` can be installed from PyPI.
+``tox-minversions`` can be installed from GitHub.
 
 To install with ``pip``:
 
 .. code-block:: bash
 
-	$ python -m pip install tox-minversions
+	$ python -m pip install git+https://github.com/python-coincidence/tox-minversions
 
 .. end installation
 
