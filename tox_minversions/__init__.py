@@ -91,6 +91,9 @@ def tox_testenv_install_deps(venv: VirtualEnv, action: Action) -> Optional[bool]
 
 	envconfig: TestenvConfig = venv.envconfig
 
+	if envconfig.skip_install:
+		return None
+
 	if "--minversions" in envconfig.config.args or envconfig.minversions:
 		# envconfig.skip_install = True
 		venv.install_pkg = MethodType(install_pkg, venv)
@@ -132,6 +135,9 @@ def install_pkg(  # noqa: D103
 @tox.hookimpl
 def tox_runtest_pre(venv: VirtualEnv):  # noqa: D103
 	envconfig: TestenvConfig = venv.envconfig
+
+	if envconfig.skip_install:
+		return None
 
 	if "--minversions" in envconfig.config.args or envconfig.minversions:
 		extras = venv.envconfig.extras
