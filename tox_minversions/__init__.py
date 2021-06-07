@@ -158,8 +158,10 @@ def tox_runtest_pre(venv: VirtualEnv):  # noqa: D103
 
 			requirements = []
 			for requirement in map(Requirement, metadata.get_all("Requires-Dist", default=[])):
-				if requirement.marker and not requirement.marker.evaluate(marker_environment(extras)):
-					continue
+				if requirement.marker:
+					if not any(requirement.marker.evaluate(marker_environment(extra)) for extra in extras):
+						continue
+					requirement.marker = None
 
 				spec_operators = {s.operator for s in requirement.specifier}
 
