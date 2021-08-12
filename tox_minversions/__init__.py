@@ -101,7 +101,7 @@ def tox_testenv_install_deps(venv: VirtualEnv, action: Action) -> Optional[bool]
 	return None
 
 
-def install_pkg(  # noqa: D103
+def install_pkg(
 		self: VirtualEnv,
 		dir,  # noqa: A002  # pylint: disable=redefined-builtin
 		action: Action,
