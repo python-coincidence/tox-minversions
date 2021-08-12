@@ -45,3 +45,6 @@ classifiers:
 
 keywords:
  - tox
+
+mypy_deps:
+ - types-first
