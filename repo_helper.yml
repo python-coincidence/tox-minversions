@@ -48,3 +48,6 @@ keywords:
 
 mypy_deps:
  - types-first
+
+tox_unmanaged:
+ - pytest
