@@ -36,8 +36,8 @@ tox-minversions
 	:target: https://github.com/python-coincidence/tox-minversions/actions?query=workflow%3A%22mypy%22
 	:alt: mypy status
 
-.. |requires| image:: https://dependency-dash.herokuapp.com/github/python-coincidence/tox-minversions/badge.svg
-	:target: https://dependency-dash.herokuapp.com/github/python-coincidence/tox-minversions/
+.. |requires| image:: https://dependency-dash.repo-helper.uk/github/python-coincidence/tox-minversions/badge.svg
+	:target: https://dependency-dash.repo-helper.uk/github/python-coincidence/tox-minversions/
 	:alt: Requirements Status
 
 .. |coveralls| image:: https://img.shields.io/coveralls/github/python-coincidence/tox-minversions/master?logo=coveralls
