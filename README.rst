@@ -63,7 +63,7 @@ tox-minversions
 	:target: https://github.com/python-coincidence/tox-minversions/commit/master
 	:alt: GitHub last commit
 
-.. |maintained| image:: https://img.shields.io/maintenance/yes/2022
+.. |maintained| image:: https://img.shields.io/maintenance/yes/2023
 	:alt: Maintenance
 
 .. end shields
