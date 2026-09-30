@@ -42,9 +42,9 @@ from cawdrey.header_mapping import HeaderMapping
 from domdf_python_tools.stringlist import DelimitedList
 from domdf_python_tools.utils import divide
 from first import first
+from packaging.markers import Marker, Variable, _eval_op, _format_marker
 from packaging.requirements import Requirement
 from packaging.specifiers import Specifier, SpecifierSet
-from shippinglabel.requirements import marker_environment
 from tox.action import Action  # type: ignore
 from tox.config import Parser, TestenvConfig  # type: ignore
 from tox.venv import VirtualEnv  # type: ignore
@@ -132,6 +132,37 @@ def install_pkg(
 	self._install(target, extraopts=pip_flags, action=action)
 
 
+def evaluate_extra(marker: Marker, extra: str) -> Tuple[bool, Optional[Marker]]:
+
+	markers = marker._markers
+
+	final_markers = []
+	extra_matches = False
+
+	for marker in markers:
+		assert isinstance(marker, (list, tuple, str))
+
+		if isinstance(marker, tuple):
+			lhs, op, rhs = marker
+
+			if isinstance(lhs, Variable):
+				if lhs.value == "extra":
+					extra_matches = _eval_op(extra, op, rhs.value)
+
+					if extra_matches:
+						# Removes op (and / or)
+						if final_markers:
+							final_markers.pop()
+						continue
+
+		final_markers.append(marker)
+
+	if final_markers:
+		return extra_matches, Marker(_format_marker(final_markers))
+	else:
+		return extra_matches, None
+
+
 @tox.hookimpl
 def tox_runtest_pre(venv: VirtualEnv):  # noqa: D103
 	envconfig: TestenvConfig = venv.envconfig
@@ -140,9 +171,9 @@ def tox_runtest_pre(venv: VirtualEnv):  # noqa: D103
 		return None
 
 	if "--minversions" in envconfig.config.args or envconfig.minversions:
-		extras = venv.envconfig.extras
+		extras = envconfig.extras
 
-		with tarfile.open(venv.envconfig.setenv["TOX_PACKAGE"], mode="r:gz") as fp:
+		with tarfile.open(envconfig.setenv["TOX_PACKAGE"], mode="r:gz") as fp:
 			pkginfo_name = first(fp.getnames(), key=lambda n: n.endswith("PKG-INFO"))
 
 			if pkginfo_name is None:
@@ -159,9 +190,17 @@ def tox_runtest_pre(venv: VirtualEnv):  # noqa: D103
 			requirements = []
 			for requirement in map(Requirement, metadata.get_all("Requires-Dist", default=[])):
 				if requirement.marker:
-					if not any(requirement.marker.evaluate(marker_environment(extra)) for extra in extras):
-						continue
-					requirement.marker = None
+
+					marker = requirement.marker
+
+					# This is far from being correct but handles the common cases
+					# E.g. "extra == 'foo' or extra == 'bar'" fails
+					for extra in extras:
+						extra_matches, marker = evaluate_extra(marker, extra)
+						if not extra_matches:
+							continue
+
+					requirement.marker = marker
 
 				spec_operators = {s.operator for s in requirement.specifier}
 
