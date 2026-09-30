@@ -1,4 +1,4 @@
-cawdrey>=0.4.2
+cawdrey>=0.5.1
 domdf-python-tools>=2.5.2
 first>=2.0.2
 packaging>=20.9
